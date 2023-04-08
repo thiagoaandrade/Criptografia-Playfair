@@ -1,0 +1,1 @@
+Código simples que criptografa e descriptografa alguma mensagem que esteja utilizando a criptografia playfair.
