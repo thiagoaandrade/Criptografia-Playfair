@@ -2,12 +2,22 @@ def criptografia(linhaTexto, colunaTexto):
     for linha in alfabeto:
         if colunaTexto in linha:
             posiçãoColuna = linha.index(colunaTexto)
-
+        if linhaTexto in linha:
+            posiçãoTexto = linha.index(linhaTexto)
     
+    #Caso estejam na mesma coluna
+    if posiçãoColuna == posiçãoTexto:
+        for indice, linha in enumerate(alfabeto):
+            if linhaTexto in linha:
+                if indice == 4:
+                    elemento = alfabeto[0][posiçãoTexto]
+                else:
+                    elemento = alfabeto[indice+1][posiçãoTexto]
+                return elemento
+            
     for linha in alfabeto:
         #Caso estejam na mesma linha
         if colunaTexto in linha and linhaTexto in linha:
-            posiçãoTexto = linha.index(linhaTexto)
             if posiçãoTexto == 4:
                 posiçãoTexto = 0
             else:
@@ -15,7 +25,7 @@ def criptografia(linhaTexto, colunaTexto):
             elemento = linha[posiçãoTexto]
             return elemento
         
-        #Caso estejam em linhas e colunas diferentes(Normal)
+        #Caso estejam em linhas e colunas diferentes(Padrão)
         elif linhaTexto in linha:
             elemento = linha[posiçãoColuna]
             return elemento
@@ -24,20 +34,27 @@ def descriptografia(linhaTexto, colunaTexto):
     for linha in alfabeto:
         if linhaTexto in linha:
             posiçãoTexto = linha.index(linhaTexto)
-
-    for linha in alfabeto:
         if colunaTexto in linha:
             posiçãoColuna = linha.index(colunaTexto)
 
-    for indice, linha in enumerate(alfabeto):
-
+    #Caso estejam na mesma coluna
+    if posiçãoColuna == posiçãoTexto:
+        for indice, linha in enumerate(alfabeto):
+            if linhaTexto in linha:
+                if indice == 0:
+                    elemento = alfabeto[4][posiçãoTexto]
+                else:
+                    elemento = alfabeto[indice-1][posiçãoTexto]
+                return elemento
+            
+    for linha in alfabeto:
         #Caso os itens estejam na mesma linha
         if colunaTexto in linha and linhaTexto in linha:
             posiçãoTexto -= 1
             elemento = linha[posiçãoTexto]
             return elemento
 
-        #Caso estejam em linhas e colunas diferentes(Normal)
+        #Caso estejam em linhas e colunas diferentes(Padrão)
         elif linhaTexto in linha:
             elemento = linha[posiçãoColuna]
             return elemento
